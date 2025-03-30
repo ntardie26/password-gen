@@ -23,6 +23,14 @@ const randomFunc = {
     symbol: getRandomSymbol
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+    generateAndDisplayPassword();
+});
+
+[lengthEl, uppercaseEl, lowercaseEl, numbersEl, symbolsEl, excludeSimilarEl, excludeAmbiguousEl].forEach(el => {
+    el.addEventListener('input', generateAndDisplayPassword);
+});
+
 generateEl.addEventListener('click', () => {
     const length = +lengthEl.value;
     const amount = +amountEl.value;
@@ -91,6 +99,19 @@ function copyToClipboard(text) {
     textarea.select();
     document.execCommand('copy');
     textarea.remove();
+}
+
+function generateAndDisplayPassword() {
+    const length = +lengthEl.value;
+    const hasLower = lowercaseEl.checked;
+    const hasUpper = uppercaseEl.checked;
+    const hasNumber = numbersEl.checked;
+    const hasSymbol = symbolsEl.checked;
+    const excludeSimilar = excludeSimilarEl.checked;
+    const excludeAmbiguous = excludeAmbiguousEl.checked;
+
+    const password = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length, excludeSimilar, excludeAmbiguous);
+    resultEl.innerText = password;
 }
 
 function generatePassword(lower, upper, number, symbol, length, excludeSimilar, excludeAmbiguous) {
