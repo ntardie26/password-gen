@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dead Simple Password Generator</title>
+    <title>Password Generator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Dead Simple Password Generator</h1>
+        <h1>Password Generator</h1>
         <div class="result-container">
             <span id="result"></span>
             <button id="clipboard" class="btn">Copy</button>
@@ -36,15 +36,14 @@
                 <input type="checkbox" id="symbols" checked>
             </div>
             <div class="setting">
-                <label>Exclude similar characters (0,O,o,L,l,i,1)</label>
+                <label>Exclude similar characters</label>
                 <input type="checkbox" id="exclude-similar">
             </div>
             <div class="setting">
-                <label>Exclude ambiguous symbols ({}[]()/\\'"~,;:.<>)</label>
+                <label>Exclude ambiguous symbols</label>
                 <input type="checkbox" id="exclude-ambiguous">
             </div>
         </div>
-        <button id="generate" class="btn btn-generate">Generate Password</button>
     </div>
     <script src="script.js"></script>
 </body>
