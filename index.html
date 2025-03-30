@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dead Simple Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dead Simple Password Generator</h1>
+        <div class="result-container">
+            <span id="result"></span>
+            <button id="clipboard" class="btn">Copy</button>
+        </div>
+        <div class="settings">
+            <div class="setting">
+                <label>Length:</label>
+                <input type="range" id="length" min="4" max="32" value="12" oninput="lengthValue.innerText = this.value">
+                <span id="lengthValue">12</span>
+            </div>
+            <div class="setting">
+                <label>Amount:</label>
+                <input type="number" id="amount" min="1" max="10" value="1">
+            </div>
+            <div class="setting">
+                <label>ABC (Uppercase)</label>
+                <input type="checkbox" id="uppercase" checked>
+            </div>
+            <div class="setting">
+                <label>abc (Lowercase)</label>
+                <input type="checkbox" id="lowercase" checked>
+            </div>
+            <div class="setting">
+                <label>123 (Numbers)</label>
+                <input type="checkbox" id="numbers" checked>
+            </div>
+            <div class="setting">
+                <label>$?% (Symbols)</label>
+                <input type="checkbox" id="symbols" checked>
+            </div>
+            <div class="setting">
+                <label>Exclude similar characters (0,O,o,L,l,i,1)</label>
+                <input type="checkbox" id="exclude-similar">
+            </div>
+            <div class="setting">
+                <label>Exclude ambiguous symbols ({}[]()/\\'"~,;:.<>)</label>
+                <input type="checkbox" id="exclude-ambiguous">
+            </div>
+        </div>
+        <div class="actions">
+            <button id="generate" class="btn btn-generate">Generate Password</button>
+            <button id="copy-all" class="btn">Copy All Passwords</button>
+        </div>
+        <div id="passwords-container"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
