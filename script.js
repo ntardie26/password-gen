@@ -1,6 +1,4 @@
-const resultEl = document.getElementById('result');
 const lengthEl = document.getElementById('length');
-const lengthValueEl = document.getElementById('lengthValue');
 const amountEl = document.getElementById('amount');
 const uppercaseEl = document.getElementById('uppercase');
 const lowercaseEl = document.getElementById('lowercase');
@@ -9,7 +7,7 @@ const symbolsEl = document.getElementById('symbols');
 const excludeSimilarEl = document.getElementById('exclude-similar');
 const excludeAmbiguousEl = document.getElementById('exclude-ambiguous');
 const clipboardEl = document.getElementById('clipboard');
-const passwordsContainerEl = document.getElementById('passwords-container');
+const passwordsOutputEl = document.getElementById('passwords-output');
 
 const similarChars = '0OoLli1';
 const ambiguousSymbols = '{}[]()/\'"`~,;:.<>';
@@ -21,19 +19,17 @@ const randomFunc = {
     symbol: getRandomSymbol
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    generateAndDisplayPasswords();
-});
+document.addEventListener('DOMContentLoaded', generateAndDisplayPasswords);
 
 [lengthEl, amountEl, uppercaseEl, lowercaseEl, numbersEl, symbolsEl, excludeSimilarEl, excludeAmbiguousEl].forEach(el => {
     el.addEventListener('input', generateAndDisplayPasswords);
 });
 
 clipboardEl.addEventListener('click', () => {
-    const password = resultEl.innerText;
-    if (!password) return;
-    copyToClipboard(password);
-    alert('Password copied to clipboard');
+    const passwords = passwordsOutputEl.value;
+    if (!passwords) return;
+    copyToClipboard(passwords);
+    alert('Passwords copied to clipboard');
 });
 
 function generateAndDisplayPasswords() {
@@ -46,15 +42,14 @@ function generateAndDisplayPasswords() {
     const excludeSimilar = excludeSimilarEl.checked;
     const excludeAmbiguous = excludeAmbiguousEl.checked;
 
-    passwordsContainerEl.innerHTML = '';
+    const passwords = [];
 
     for (let i = 0; i < amount; i++) {
         const password = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length, excludeSimilar, excludeAmbiguous);
-        const passwordItem = document.createElement('div');
-        passwordItem.classList.add('password-item');
-        passwordItem.textContent = password;
-        passwordsContainerEl.appendChild(passwordItem);
+        passwords.push(password);
     }
+
+    passwordsOutputEl.value = passwords.join('\n');
 }
 
 function copyToClipboard(text) {
