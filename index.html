@@ -9,10 +9,6 @@
 <body>
     <div class="container">
         <h1>Password Generator</h1>
-        <div class="result-container">
-            <span id="result"></span>
-            <button id="clipboard" class="btn">Copy</button>
-        </div>
         <div class="settings">
             <div class="setting">
                 <label>Length:</label>
@@ -48,7 +44,10 @@
                 <input type="checkbox" id="exclude-ambiguous">
             </div>
         </div>
-        <div id="passwords-container"></div>
+        <div class="result-container">
+            <textarea id="passwords-output" readonly></textarea>
+            <button id="clipboard" class="btn">Copy All</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
